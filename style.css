@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+}
+.topvid{
+  margin-top: 65px;
+}
+.video{
+  display: inline-block;
+}
+.loginpage{
+  margin-top: 50px;
+  background-image: url("https://consequenceofsound.files.wordpress.com/2016/02/screen-shot-2016-02-21-at-12-11-53-pm.png?w=806&h=536" );
+  background-repeat: no-repeat;
+  height:800px;
+  width: 100%;
+}

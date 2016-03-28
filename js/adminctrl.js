@@ -1,14 +1,15 @@
-angular.module('myApp').controller('vidCtrl', function($scope, vidSvc, $sce){
-    $scope.trustSrc = function(src) {
-      return $sce.trustAsResourceUrl(src);
+angular.module('myApp').controller('adminCtrl', function($scope, membersSvc, vidSvc, $sce){
+  //member controller
+  $scope.trustSrc = function(src) {
+   return $sce.trustAsResourceUrl(src);
  };
-    $scope.getVideos = function(){
-      vidSvc.getVideos().then(function(response){
-        $scope.videos = response.data;
-        console.log($scope.videos)
+  $scope.getVideos = function(){
+    vidSvc.getVideos().then(function(response){
+      $scope.videos = response.data;
+      console.log($scope.videos)
     })
   };
-    $scope.getVideos();
+  $scope.getVideos();
 
     $scope.getVideos = function(id) {
       vidSvc.getVideos(id)
