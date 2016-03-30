@@ -3,14 +3,24 @@ body{
 }
 .topvid{
   margin-top: 65px;
+  background-image: url("imgs/sugimoto-akron-civic-ohio-1980-hirshhorn.jpg");
+  display: flex;
 }
 .video{
-  display: inline-block;
+
+  display: inline-flex;
+  background-color: white;
 }
 .loginpage{
   margin-top: 50px;
-  background-image: url("https://consequenceofsound.files.wordpress.com/2016/02/screen-shot-2016-02-21-at-12-11-53-pm.png?w=806&h=536" );
-  background-repeat: no-repeat;
+  /*background-image: url("https://consequenceofsound.files.wordpress.com/2016/02/screen-shot-2016-02-21-at-12-11-53-pm.png?w=806&h=536" );*/
   height:800px;
   width: 100%;
+}
+.memberpage{
+  margin-top: 65px;
+}
+
+.admin{
+  margin-top: 65px;
 }

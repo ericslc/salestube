@@ -1,46 +1,29 @@
-angular.module('myApp').controller('adminCtrl', function($scope, membersSvc, vidSvc, $sce){
-  //member controller
-  $scope.trustSrc = function(src) {
-   return $sce.trustAsResourceUrl(src);
- };
-  $scope.getVideos = function(){
-    vidSvc.getVideos().then(function(response){
-      $scope.videos = response.data;
-      console.log($scope.videos)
-    })
-  };
-  $scope.getVideos();
+angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSvc, adminSvc, $sce){
+  //member and admin controller
 
-    $scope.getVideos = function(id) {
-      vidSvc.getVideos(id)
-        .then(function(response) {
-          $scope.videos = response;
+
+  $scope.videos = function () {
+
+
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call addVideos from service
+      vidSvc.addVideos($scope.newvidForm.Title, $scope.newvidForm.Desc, $scope.newvidForm.link)
+        // handle success
+        .then(function () {
+          $scope.disabled = false;
+          $scope.newvidForm = {};
+        })
+        // handle error
+        .catch(function () {
+          $scope.error = true;
+          $scope.errorMessage = "What did you do?!?";
+          $scope.disabled = false;
+          $scope.newvidForm = {};
         });
+
     };
 
-    $scope.newVideos = function(newTitle, newDesc, newlink) {
-      vidSvc.newVideo(newTitle, newDesc, newlink)
-        .then(function(response) {
-          $scope.getVideos();
-        });
-    };
-
-    $scope.removeVideo = function(id) {
-      vidSvc.removeVideo(id)
-      .then(function(response){
-        alert("Successfully Removed");
-        $scope.getVideos();
-      });
-    };
-
-    $scope.updateVideo = function(videos) {
-      var id = videos._id;
-      delete videos._id;
-      delete videos.__v;
-      vidSvc.updateVideo(videos, id)
-      .then(function(response){
-        $scope.getVideos();
-      });
-    };
-
-})
+});

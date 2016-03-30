@@ -1,4 +1,23 @@
-<div class="container">
-  <button>Add Video</button>
+<div class="admin">
+  <div ng-repeat="user in currentUser">
+    {{currentUser.username}}
+  </div>
+  <form class="form" ng-submit="videos()">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+        <input type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
+        <label>link</label>
+        <input type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Add Video</button>
+      </div>
+  </form>
+
+
 
 </div>

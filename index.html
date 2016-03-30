@@ -9,6 +9,7 @@
     <title>VideoLibrary</title>
   </head>
   <body >
+    <div ng-controller="logoutCtrl">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -20,10 +21,12 @@
           <li><a ui-sref="vids">Videos</a></li>
           <li><a ui-sref="members">Members</a></li>
           <li><a ui-sref="admin">Admin</a></li>
+          <li><a ng-click="logout()" class="btn">Logout</a>
+</li>
         </ul>
         </div>
     </nav>
-
+</div>
 
 <div class="container-fluid">
 
@@ -38,7 +41,10 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="./js/loginCtrl.js"></script>
+    <script type="text/javascript" src="./js/logoutctrl.js"></script>
+    <script type="text/javascript" src="./js/signupCtrl.js"></script>
     <script type="text/javascript" src="./js/vidctrl.js"></script>
+    <script type="text/javascript" src="./js/authsvc.js"></script>
     <script type="text/javascript" src="./js/vidsvc.js"></script>
     <script type="text/javascript" src="./js/adminctrl.js"></script>
     <script type="text/javascript" src="./js/adminsvc.js"></script>

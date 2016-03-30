@@ -5,17 +5,24 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
-var flash = require('connect-flash');
-var bcrypt = require('bcrypt-nodejs');
 var morgan = require('morgan');
 var config = require('./config/passport.js');
 var app = express();
-var passport
-var port = 8034;
 var Videos = require('./server/videos');
-var Members = require('./server/user');
+var User = require('./server/user');
+var localStrategy = require('passport-local').Strategy;
+var jwt = require('jwt-simple');
+var port = 8034;
 
 
+
+
+
+mongoose.set("debug", true);
+mongoose.connect("mongodb://localhost/trainingvids");
+mongoose.connection.once("open", function(){
+  console.log("connected to mongodb");
+});
 
 app.use(express.static(__dirname));
 app.use(cors());
@@ -23,26 +30,25 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
 
-app.set('view engine', 'ejs');
 
-
-app.use(session({secret: 'hopethisallworkswiththethings'}));
+app.use(session({secret: 'hopethisallworkswiththethings', resave: false,
+saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-
-mongoose.set("debug", true);
-mongoose.connect("mongodb://localhost/");
-mongoose.connection.once("open", function(){
-  console.log("connected to mongodb");
-});
-
-
+function isLoggedIn(req, res, next) {
+ if (req.isAuthenticated()) {
+   return next();
+ }
+}
 
 //**videos**
-app.get('/api/videos', function(req, res){
+app.get('/videos', function(req, res){
   var query;
   if(req.query.status){
     query = {status: req.query.status}
@@ -51,15 +57,20 @@ app.get('/api/videos', function(req, res){
   };
   Videos.find(query, function(err, videos){
     return res.send(videos);
+
   })
 });
-app.post('/api/videos', function(req, res){
-  var videos = new Videos(req.body);
-  videos.save(function(err, s){
-    return err ? res.status(500).send(err) : res.send(s);
+app.post('/videos', function(req, res) {
+var video = new Videos(req.body);
+video.save(function(err, s){
+  if (err){
+    return res.status(500).send(err);
+  }else{
+    res.send(s);
+};
   });
 });
-app.put('/api/videos', function(req, res){
+app.put('/videos', function(req, res){
   videos.findByIdAndUpdate(req.query.id, function(err, videos){
     if(err){
       return res.status(500).send(err)
@@ -70,7 +81,7 @@ app.put('/api/videos', function(req, res){
     }
   })
 });
-app.delete('/api/videos', function(req, res){
+app.delete('/videos', function(req, res){
   if(!req.query.id){
     return res.status(400).send('id query needed');
   }
@@ -84,41 +95,43 @@ app.delete('/api/videos', function(req, res){
 });
 
 
-//**members**
+//**users**
 
-app.get('/api/members', function(req, res){
+
+
+app.get('/user', function(req, res){
   var query;
   if(req.query.status){
     query = {status: req.query.status}
   }else{
     query =  [];
   };
-  Members.find(query, function(err, members){
-    return res.send(members);
+  User.find(query, function(err, user){
+    return res.send(user);
   })
 });
-app.post('/api/members', function(req, res){
-  var members = new members(req.body);
-  members.save(function(err, s){
+app.post('/user', function(req, res){
+  var user = new User(req.body);
+  user.save(function(err, s){
     return err ? res.status(500).send(err) : res.send(s);
   })
 });
-app.put('/api/members', function(req, res){
-  members.findByIdAndUpdate(req.query.id, function(err, members){
+app.put('/user', function(req, res){
+  User.findByIdAndUpdate(req.query.id, req.body, function(err, user){
     if(err){
       return res.status(500).send(err);
     }else{
-      video.findById(req.res.id, function(err, members){
-        return res.send();
-      })
+    return res.status(200).send(user);
+
+
     }
   })
 });
-app.delete('/api/members', function(req, res){
+app.delete('/user', function(req, res){
   if(!req.query.id){
     return res.status(400).send('enter in correct format ?id=');
   }
-  Members.findByIdAndRemove(req.query.id, function(error, response){
+  User.findByIdAndRemove(req.query.id, function(error, response){
     if(error){
       return res.status(500).json(error);
     }else{
@@ -127,6 +140,70 @@ app.delete('/api/members', function(req, res){
   })
 });
 
+
+
+app.post('/user/login', function(req, res, next) {
+ passport.authenticate('local', function(err, user, info) {
+   if (err) {
+     return next(err);
+   }
+   if (!user) {
+     return res.status(401).json({
+       err: info
+     });
+   }
+   req.logIn(user, function(err) {
+     if (err) {
+       return res.status(500).json({
+         err: 'Could not log in user'
+       });
+     }
+     res.status(200).json({
+       status: 'Login successful!',
+       user: user
+     });
+   });
+ })(req, res, next);
+});
+
+
+app.post('/user/signup', function(req, res) {
+ User.register(new User({ username: req.body.username, password: req.body.password }),
+ req.body.password, function(err, account) {
+   if (err) {
+     return res.status(500).json({
+       err: err
+     });
+   }
+   passport.authenticate('local')(req, res, function () {
+     return res.status(200).json({
+       status: 'signup successful!'
+     });
+   });
+ });
+});
+
+app.get('/user/logout', function(req, res) {
+ req.logout();
+ res.status(200).json({
+   status: 'Bye!'
+ });
+});
+
+// error handlers
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use(function(err, req, res) {
+  res.status(err.status || 500);
+  res.end(JSON.stringify({
+    message: err.message,
+    error: {}
+  }));
+});
 
 app.listen(port, function(){
   console.log('now listening on port: ' + port);

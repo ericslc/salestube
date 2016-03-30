@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var videoSchema = new Schema({
+var video = new Schema({
   Title: {type: String, Unique: true, required: true, index: true},
   Desc: {type: String, required: true},
   link: {type: String},
-  //uploaded: {type: String, ref: "Members"}
+  //uploaded: {type: String, ref: "User"}
 })
 
-module.exports = mongoose.model('Videos', videoSchema)
+module.exports = mongoose.model('Videos', video)

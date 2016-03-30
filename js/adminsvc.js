@@ -1,3 +1,9 @@
-angular.module('myApp').service('membersSvc', function($http){
-  //member service
+angular.module('myApp').service('adminSvc', function($http){
+  //user service
+
+this.currentUser = {};
+
+
+
+
 })
