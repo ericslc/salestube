@@ -4,6 +4,4 @@ angular.module('myApp').service('adminSvc', function($http){
 this.currentUser = {};
 
 
-
-
 })

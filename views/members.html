@@ -1,8 +1,38 @@
 <div class="memberpage">
-<a ui-sref="/admin">
-  <button type="submit">Add Video</button>
-</a>
+  <div class="page-header" >
+    <h1>{{currentUser.username}}{{currentUser.favorite}}</h1>
+  </div>
+
+
+<form class="form" ng-submit="videos()">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+      <input type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
+      <label>Link</label>
+      <input type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
+      <label>Topic</label>
+      <input type="text" class="form-control" name="topic" ng-model="newvidForm.topic" required>
+  </div>
+    <div>
+      <button type="submit" class="btn btn-default" ng-disabled="disabled">Add Video</button>
+    </div>
+</form>
 
 
 
+    <h1 class="page-header">Videos</h1>
+
+
+
+
+  <ul ng-repeat="video in videos" >
+    <li > {{video.Title}} </li>
+    <button type="submit" class="btn btn-default" ></button>
+  </ul>
+
+</div>
 </div>

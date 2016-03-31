@@ -5,14 +5,14 @@ angular.module('myApp').service('vidSvc', function($http, $q){
     return $http.get('/videos');
   };
 
-     this.addVideos = function(Title, Desc, link){
+     this.addVideos = function(Title, Desc, link, topic){
         var deferred = $q.defer();
 
-        $http.post('/videos', {Title: Title, Desc: Desc, link: link})
+        $http.post('/videos', {Title: Title, Desc: Desc, link: link, topic: topic})
         .success(function (data, status){
           if(status === 200 && data.status){
             deferred.resolve();
-            console.log(Title, Desc, link);
+            console.log(Title, Desc, link, topic);
           }else{
             deferred.reject();
           }
@@ -28,6 +28,13 @@ angular.module('myApp').service('vidSvc', function($http, $q){
     return $http.put('/videos' + id, update);
   };
   this.deleteVideos = function(id){
-    return $http.delete('/videos?id=' + id);
-  }
+        $http({
+            method: 'DELETE',
+            url: '/videos?id=' + id
+        }).then(function successCallback(response) {
+            return response;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
 })

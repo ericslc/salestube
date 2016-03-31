@@ -1,15 +1,17 @@
 <div class="topvid">
-  <div class="">
+  <input type="text" class="form-control" ng-model="search" placeholder="Search...">
+
     <h1 class="page-header">Videos</h1>
   </div>
   <div>
-    <div class="videos" ng-repeat="video in videos">
+    <div class="videos" ng-repeat="video in videos | filter: search">
       <h4>{{video.Title}}</h4>
     <iframe width="560" height="315" src="{{trustSrc(  video.link)}}" frameborder="0" allowfullscreen></iframe>
       <h4>{{video.Desc}}</h4>
 
 
 
-  </div>
+
+
 </div>
 </div>

@@ -60,6 +60,16 @@ app.get('/videos', function(req, res){
 
   })
 });
+app.get('/user/status', function(req, res) {
+ if (!req.isAuthenticated()) {
+   return res.status(200).json({
+     status: false
+   });
+ }
+ res.status(200).json({
+   status: true
+ });
+});
 app.post('/videos', function(req, res) {
 var video = new Videos(req.body);
 video.save(function(err, s){
@@ -70,16 +80,15 @@ video.save(function(err, s){
 };
   });
 });
+
 app.put('/videos', function(req, res){
-  videos.findByIdAndUpdate(req.query.id, function(err, videos){
+  Videos.findByIdAndUpdate(req.query.id, req.body, {new: true}, function(err, response){
     if(err){
       return res.status(500).send(err)
     }else{
-      videos.findById(req.query.id, function(err, videos){
-        return res.send();
-      })
-    }
-  })
+       res.send();
+      }
+    })
 });
 app.delete('/videos', function(req, res){
   if(!req.query.id){
@@ -110,6 +119,29 @@ app.get('/user', function(req, res){
     return res.send(user);
   })
 });
+app.post('/user', function(req, res){
+  var user = new User(req.body);
+  user.save(function(err, s){
+    return err ? res.status(500).send(err) : res.send(s);
+  })
+});
+//
+// app.post('/user', function(req, res){
+//   User.findById(req.query.id, function(err, videos){
+//     if(err){
+//       res.status(500).send(err);
+//     }else{
+//       User.favorite.push(req.body);
+//       User.save(function(err, data){
+//         if (err) {
+//            res.status(500).send(err)
+//             } else {
+//            res.send(data)
+//         }
+//       });
+//     }
+//   });
+// });
 app.post('/user', function(req, res){
   var user = new User(req.body);
   user.save(function(err, s){

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
-var userplaylist = require('./userplaylist');
+//var userplaylist = require('./userplaylist');
 var SALT_WORK_FACTOR = 10;
 
 var User = new Schema({
@@ -16,8 +16,9 @@ var User = new Schema({
         type: String,
         required: true,
         index: {sparse: true}
-    },
-playlist: [userplaylist]
+  },
+ favorite: [{type: Schema.Types.ObjectId, ref: 'Videos'}]
+
 });
 
 User.plugin(passportLocalMongoose);
