@@ -1,38 +1,41 @@
 <div class="memberpage">
   <div class="page-header" >
-    <h1>{{currentUser.username}}{{currentUser.favorite}}</h1>
+    <h1>{{currentUser.username}}</h1>
+    <hi>{{currentUser.favorite}}</hi>
   </div>
 
 
-<form class="form" ng-submit="videos()">
-  <div class="form-group">
-    <label>Title</label>
-    <input type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
-  </div>
-  <div class="form-group">
-    <label>Description</label>
-      <input type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
-      <label>Link</label>
-      <input type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
-      <label>Topic</label>
-      <input type="text" class="form-control" name="topic" ng-model="newvidForm.topic" required>
-  </div>
-    <div>
-      <button type="submit" class="btn btn-default" ng-disabled="disabled">Add Video</button>
+  <form  class="form" ng-submit="videos()">
+    <div hide-form="showing" class="form-group">
+      <label hide-form="showing">Title</label>
+      <input hide-form="showing" type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
     </div>
-</form>
+    <div class="form-group">
+      <label hide-form="showing">Description</label>
+        <input hide-form="showing" type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
+        <label hide-form="showing">Link</label>
+        <input hide-form="showing" type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
+        <label hide-form="showing">Topic</label>
+        <input hide-form="showing"  type="text" class="form-control" name="topic" ng-model="newvidForm.topic" required>
+    </div>
+      <div>
+        <button ng-click="toggle()" >Add Video
+      </button>
+      </div>
+  </form>
 
-
+<div ng-controller="vidCtrl">
 
     <h1 class="page-header">Videos</h1>
 
-
-
-
-  <ul ng-repeat="video in videos" >
-    <li > {{video.Title}} </li>
-    <button type="submit" class="btn btn-default" ></button>
-  </ul>
-
-</div>
+    <a  ng-repeat="video in videos">
+    <h4>{{video.Title}}</h4>
+    <button>
+    <i class="fa fa-star fa-2x" style="color: yellow" ng-click="favoriteVideo(video._id)"></i>
+  </button>
+  <div ng-repeat="favorite in currentUser">
+  <button ng-click="removeFav(favorite._id)">Remove favorite</button>
+  </div></a>
+    </div>
+  </div>
 </div>

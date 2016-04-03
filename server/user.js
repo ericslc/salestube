@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 var passportLocalMongoose = require('passport-local-mongoose');
-//var userplaylist = require('./userplaylist');
 var SALT_WORK_FACTOR = 10;
 
 var User = new Schema({

@@ -12,6 +12,9 @@ angular.module('myApp').controller('loginCtrl', function($scope, $location, admi
       vidSvc.currentUser = response;
       $scope.disabled = false;
       $scope.loginForm = {};
+      vidSvc.getFavoriteUser();
+
+
     })
 
     .catch(function(){

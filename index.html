@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
       <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.css" />
@@ -10,28 +11,31 @@
   </head>
   <body >
     <div ng-controller="logoutCtrl">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a  class="navbar-brand" href="#">Video Library</a>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand">Tutorial Library</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="login">Log In</a></li>
+            <li><a ui-sref="vids">Videos</a></li>
+            <li><a ui-sref="members">Members</a></li>
+            <li><a ui-sref="admin">Admin</a></li>
+            <li><a ng-click="logout()" class="btn">Logout</a>
+  </li>
+          </ul>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="login">Log In</a></li>
-          <li><a ui-sref="vids">Videos</a></li>
-          <li><a ui-sref="members">Members</a></li>
-          <li><a ui-sref="admin">Admin</a></li>
-          <li><a ng-click="logout()" class="btn">Logout</a>
-</li>
-        </ul>
-        </div>
-    </nav>
+      </nav>
 </div>
 
-<div class="container-fluid">
+<div>
 
   <ui-view></ui-view>
 </div>
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.js"></script>
@@ -39,14 +43,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="./js/loginCtrl.js"></script>
-    <script type="text/javascript" src="./js/logoutctrl.js"></script>
-    <script type="text/javascript" src="./js/signupCtrl.js"></script>
-    <script type="text/javascript" src="./js/vidctrl.js"></script>
-    <script type="text/javascript" src="./js/authsvc.js"></script>
-    <script type="text/javascript" src="./js/vidsvc.js"></script>
-    <script type="text/javascript" src="./js/adminctrl.js"></script>
-    <script type="text/javascript" src="./js/adminsvc.js"></script>
+    <script type="text/javascript" src="./js/controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="./js/controllers/logoutctrl.js"></script>
+    <script type="text/javascript" src="./js/controllers/signupCtrl.js"></script>
+    <script type="text/javascript" src="./js/controllers/vidctrl.js"></script>
+    <script type="text/javascript" src="./js/services/authsvc.js"></script>
+    <script type="text/javascript" src="./js/services/vidsvc.js"></script>
+    <script type="text/javascript" src="./js/controllers/adminctrl.js"></script>
+    <script type="text/javascript" src="./js/services/adminsvc.js"></script>
 
   </body>
 </html>

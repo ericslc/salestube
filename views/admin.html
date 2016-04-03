@@ -2,21 +2,22 @@
   <div class="page-header" >
     <h1>{{currentUser.username}}</h1>
   </div>
-  <form class="form" ng-submit="videos()">
-    <div class="form-group">
-      <label>Title</label>
-      <input type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
+  <form  class="form" ng-submit="videos()">
+    <div hide-form="showing" class="form-group">
+      <label hide-form="showing">Title</label>
+      <input hide-form="showing" type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
     </div>
     <div class="form-group">
-      <label>Description</label>
-        <input type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
-        <label>Link</label>
-        <input type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
-        <label>Topic</label>
-        <input type="text" class="form-control" name="topic" ng-model="newvidForm.topic" required>
+      <label hide-form="showing">Description</label>
+        <input hide-form="showing" type="text" class="form-control" name="Desc" ng-model="newvidForm.Desc" required>
+        <label hide-form="showing">Link</label>
+        <input hide-form="showing" type="url" class="form-control" name="link" ng-model="newvidForm.link" required>
+        <label hide-form="showing">Topic</label>
+        <input hide-form="showing"  type="text" class="form-control" name="topic" ng-model="newvidForm.topic" required>
     </div>
       <div>
-        <button type="submit" class="btn btn-default" ng-disabled="disabled">Add Video</button>
+        <button ng-click="toggle()" >Add Video
+      </button>
       </div>
   </form>
   <div ng-controller="vidCtrl">

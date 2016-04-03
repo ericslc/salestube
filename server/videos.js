@@ -7,7 +7,8 @@ var video = new Schema({
   Desc: {type: String, required: true},
   link: {type: String},
   topic: {type:String, required: true},
-  favorite: [{type: Schema.Types.ObjectId, ref: 'user'}]
-})
+  favorite: [{type: Schema.Types.ObjectId, ref: 'user'}],
+  comments: [String]
+  })
 
 module.exports = mongoose.model('Videos', video)

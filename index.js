@@ -81,8 +81,8 @@ video.save(function(err, s){
   });
 });
 
-app.put('/videos', function(req, res){
-  Videos.findByIdAndUpdate(req.query.id, req.body, {new: true}, function(err, response){
+app.put('/videos/comments', function(req, res){
+  Videos.findByIdAndUpdate(req.query.id, req.body.comments, {new: true}, function(err, response){
     if(err){
       return res.status(500).send(err)
     }else{
@@ -119,6 +119,16 @@ app.get('/user', function(req, res){
     return res.send(user);
   })
 });
+app.get('/user/favorite', function(req, res) {
+ User.findOne({ username: req.query.username })
+ .populate('favorite').exec(function(err, user) {
+   if (err) {
+     res.status(500).json(err)
+   } else {
+     res.status(200).json(user);
+   }
+ })
+})
 app.post('/user', function(req, res){
   var user = new User(req.body);
   user.save(function(err, s){
@@ -159,9 +169,9 @@ app.put('/user', function(req, res){
     }
   })
 });
-app.delete('/user', function(req, res){
-  if(!req.query.id){
-    return res.status(400).send('enter in correct format ?id=');
+app.delete('/user/favorite', function(req, res){
+  if(!req.query.currentUser.username){
+    return res.status(400).send('try again');
   }
   User.findByIdAndRemove(req.query.id, function(error, response){
     if(error){

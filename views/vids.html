@@ -1,17 +1,39 @@
 <div class="topvid">
   <input type="text" class="form-control" ng-model="search" placeholder="Search...">
-
-    <h1 class="page-header">Videos</h1>
-  </div>
-  <div>
+    <h1>Videos</h1>
     <div class="videos" ng-repeat="video in videos | filter: search">
-      <h4>{{video.Title}}</h4>
-    <iframe width="560" height="315" src="{{trustSrc(  video.link)}}" frameborder="0" allowfullscreen></iframe>
+      <div class="videos" ng-if="video">
+        <iframe width="560" height="315"  src="{{trustSrc(  video.link)}}" frameborder="4px" allowfullscreen></iframe>
+
       <h4>{{video.Desc}}</h4>
 
+      <h4> {{video.topic}}</h4>
+      <input type="text" placeholder="Comments" />
+      <h4> {{video.comments}}</h4>
+    </div>
 
 
 
+      <!-- <div class="vid-item" ng-click="document.getElementById('vid_frame').src={{trustSrc(  video.link)}}autoplay=1&rel=0&showinfo=0&autohide=1'">
+        <div class="thumb">
+        	<img src="{{video.link}}">
+        </div>
+        <div class="desc">{{video.Title}}
+        </div>
+      </div> -->
+      <!-- <div class="arrows">
+      	<div class="arrow-left">
+      		<i class="fa fa-chevron-left fa-lg"></i>
+      	</div>
+      	<div class="arrow-right">
+      		<i class="fa fa-chevron-right fa-lg"></i>
+      	</div>
+      </div> -->
 
+
+
+</div>
+
+</div>
 </div>
 </div>
