@@ -1,0 +1,19 @@
+<div ng-repeat="message in comment" class="comment">
+  {{message.comment}}
+</br>
+<a href="{{message.link}}"target="_blank">link to resourse</a>
+</div>
+
+<div class="form-group">
+  <label hide-form="showing">Comment</label>
+    <input hide-form="showing" type="text" class="form-control" name="comment" ng-model="newcommentForm.comment" required>
+    <label hide-form="showing">Link</label>
+    <input hide-form="showing" type="url" class="form-control" name="link" ng-model="newcommentForm.link" required>
+
+</div>
+  <div>
+    <button ng-click="toggle()" >Add Comment/link
+  </button>
+
+
+</div>

@@ -26,6 +26,22 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
         });
 
     };
+    $scope.getComment = function(){
+      adminSvc.getComment().then(function(response){
+        $scope.comment = response.data;
+        console.log($scope.comment)
+    })
+  };
+    $scope.getComment();
+
+    
+    $scope.newComment = function(newcomment, newlink){
+      adminSvc.newComment(newcomment, newlink).then(function(response){
+        $scope.getComment();
+
+      })
+    }
+
 
     $scope.toggle=function(){
     $scope.showing = !$scope.showing;

@@ -36,9 +36,7 @@ this.favoriteUser = {};
     this.removeFav = function(id) {
         return $http.delete('/user/favorite?username=' + this.currentUser.username)
     };
-    this.addComment = function(){
-      return $http.put('/videos/comments?id')
-    };
+
 
     this.updateVideos = function(id){
     return $http.put('/videos' + id, update);

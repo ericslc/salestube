@@ -21,6 +21,11 @@ angular.module('myApp', ['ui.router',]).config(function($stateProvider, $urlRout
     templateUrl: '/views/signup.html',
     access: {restricted: false}
   })
+  .state('messages',{
+    url: '/messages',
+    controller: 'adminCtrl',
+    templateUrl: '/views/messages.html'
+  })
 
   .state('vids', {
     url: '/vids',
@@ -37,20 +42,20 @@ angular.module('myApp', ['ui.router',]).config(function($stateProvider, $urlRout
 
   }
   })
-  .state('members', {
-    url: '/members',
-    controller: 'adminCtrl',
-    templateUrl: '/views/members.html',
-     access: {restricted: true},
-     resolve: {
-       security: ['$q', 'authSvc', function($q, authSvc){
-         if(authSvc.currentUser === null){
-           return $q.reject('Not Authorized');
-         }
-       }]
-     }
-
-  })
+  // .state('members', {
+  //   url: '/members',
+  //   controller: 'adminCtrl',
+  //   templateUrl: '/views/members.html',
+  //    access: {restricted: true},
+  //    resolve: {
+  //      security: ['$q', 'authSvc', function($q, authSvc){
+  //        if(authSvc.currentUser === null){
+  //          return $q.reject('Not Authorized');
+  //        }
+  //      }]
+  //    }
+  //
+  // })
   .state('admin', {
     url: '/admin',
     controller: 'adminCtrl',

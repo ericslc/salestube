@@ -1,5 +1,5 @@
 <div class="topvid">
-  <input type="text" class="form-control" ng-model="search" placeholder="Search...">
+  <input class="search" type="text" style="300px" ng-model="search" placeholder="Search...">
     <h1>Videos</h1>
     <div class="videos" ng-repeat="video in videos | filter: search">
       <div class="videos" ng-if="video">
@@ -8,8 +8,11 @@
       <h4>{{video.Desc}}</h4>
 
       <h4> {{video.topic}}</h4>
-      <input type="text" placeholder="Comments" />
+      <input class="search" type="text"  placeholder="Comments" />
       <h4> {{video.comments}}</h4>
+      <button>
+   <i class="fa fa-star fa-2x" style="color: yellow" ng-click="favoriteVideo(video._id)"></i>
+ </button>
     </div>
 
 
@@ -34,6 +37,4 @@
 
 </div>
 
-</div>
-</div>
 </div>

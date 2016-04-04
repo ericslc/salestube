@@ -1,11 +1,10 @@
-<div class="memberpage">
-  <div class="page-header" >
+<div class="memberpage" ng-controller="adminCtrl">
+
     <h1>{{currentUser.username}}</h1>
-    <hi>{{currentUser.favorite}}</hi>
-  </div>
 
 
-  <form  class="form" ng-submit="videos()">
+
+  <form  class="form" color="black" ng-submit="videos()">
     <div hide-form="showing" class="form-group">
       <label hide-form="showing">Title</label>
       <input hide-form="showing" type="text" class="form-control" name="Title" ng-model="newvidForm.Title" required>
@@ -24,18 +23,19 @@
       </div>
   </form>
 
-<div ng-controller="vidCtrl">
+<div id="lower" ng-controller="vidCtrl">
 
-    <h1 class="page-header">Videos</h1>
+    <h1 >Videos</h1>
+    <div class="commentsection" ng-repeat="comment in Comment">
 
-    <a  ng-repeat="video in videos">
-    <h4>{{video.Title}}</h4>
-    <button>
-    <i class="fa fa-star fa-2x" style="color: yellow" ng-click="favoriteVideo(video._id)"></i>
-  </button>
-  <div ng-repeat="favorite in currentUser">
-  <button ng-click="removeFav(favorite._id)">Remove favorite</button>
-  </div></a>
-    </div>
+
+<h4>{{Comment.comment}}</h4>
   </div>
-</div>
+    <a  class="color: black" ng-repeat="video in videos">
+    <h4>{{video.Title}}</h4>
+    <!-- <button>
+    <i class="fa fa-star fa-2x" style="color: yellow" ng-click="Comment"></i>
+  </button> -->
+    </a>
+  </div>
+  </div>

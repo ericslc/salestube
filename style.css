@@ -4,6 +4,19 @@
 body{
   margin: 0;
 }
+/*top of home page*/
+.home {
+  text-align: center;
+  color: black;
+  background: url('imgs/ws_Columbia_Mountain_River_Grass_1366x768.jpg') no-repeat center center;
+  height: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*login page*/
 .login{
   text-align: center;
   color: black;
@@ -20,7 +33,7 @@ body{
 .loginform{
   display: inline-block;
 }
-
+/*signup page*/
 .signup{
   text-align: center;
   color: white;
@@ -32,55 +45,69 @@ body{
   justify-content: center;
   align-items: center;
 }
-
+/*member page*/
 .memberpage{
-  background-color: black;
-  padding-top: 65px;
-  font-family: "Oswald", sans-serif;
-
-}
-.admin{
-  background-color: #B5B7A2;
-  margin-top: 65px;
-  font-family: "Oswald", sans-serif;
-
-}
-/*top of home page*/
-.home {
-  text-align: center;
+  background-color: #444;
   color: black;
-  background: url('imgs/ws_Columbia_Mountain_River_Grass_1366x768.jpg') no-repeat center center;
+  background: url('imgs/row_of_plain_pencils_against_grey_background.jpg' ) no-repeat center center;
   height: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 65px;
+  font-family: "Oswald", sans-serif;
+
 }
+#lower{
+  color: white;
+  margin: 0;
+}
+/*videos page*/
+
 .topvid{
   text-align: center;
-  padding-top: 15px;
-
-
+  padding-top: 65px;
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
+
+.search{
+  border-radius:7px;
+}
+.comment{
+  padding-top: 65px;
+}
+
+
 .videos{
   text-align: center;
   width: 60%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: black;
   padding-bottom: 30px;
-  margin-left: 200px;
 
 }
-/*home page main body*/
-/*.main-home{
-
-  margin-top: -50px;
-  background: url('imgs/ws_Columbia_Mountain_River_Grass_1366x768.jpg') no-repeat center center;
-  position: fixed;
-  height: 1000px;
+/*admin*/
+.admin{
+  text-align: center;
+  color: black;
+background: url('imgs/row_of_plain_pencils_against_grey_background.jpg' ) no-repeat center center;
+  height: 1000px;;
   width: 100%;
-}*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }}
+
+  /*media queries*/

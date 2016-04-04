@@ -10,6 +10,7 @@ var config = require('./config/passport.js');
 var app = express();
 var Videos = require('./server/videos');
 var User = require('./server/user');
+var Comment = require('./server/comments')
 var localStrategy = require('passport-local').Strategy;
 var jwt = require('jwt-simple');
 var port = 8034;
@@ -81,8 +82,8 @@ video.save(function(err, s){
   });
 });
 
-app.put('/videos/comments', function(req, res){
-  Videos.findByIdAndUpdate(req.query.id, req.body.comments, {new: true}, function(err, response){
+app.put('/videos', function(req, res){
+  Videos.findByIdAndUpdate(req.query.id, req.body.Comments, {new: true}, function(err, response){
     if(err){
       return res.status(500).send(err)
     }else{
@@ -129,29 +130,8 @@ app.get('/user/favorite', function(req, res) {
    }
  })
 })
-app.post('/user', function(req, res){
-  var user = new User(req.body);
-  user.save(function(err, s){
-    return err ? res.status(500).send(err) : res.send(s);
-  })
-});
-//
-// app.post('/user', function(req, res){
-//   User.findById(req.query.id, function(err, videos){
-//     if(err){
-//       res.status(500).send(err);
-//     }else{
-//       User.favorite.push(req.body);
-//       User.save(function(err, data){
-//         if (err) {
-//            res.status(500).send(err)
-//             } else {
-//            res.send(data)
-//         }
-//       });
-//     }
-//   });
-// });
+
+
 app.post('/user', function(req, res){
   var user = new User(req.body);
   user.save(function(err, s){
@@ -232,6 +212,43 @@ app.get('/user/logout', function(req, res) {
  });
 });
 
+//comments on Videos
+
+
+app.get('/comments', function(req, res){
+  var query;
+  if(req.query.status){
+    query = {status: req.query.status}
+  }else{
+    query = [];
+  };
+  Comment.find(query, function(err, Comment){
+    return res.send(Comment);
+
+  })
+});
+
+
+app.post('/comments', function(req, res){
+  var comment = new Comment(req.body);
+  comment.save(function(err, s){
+    return err ? res.status(500).send(err) : res.send(s);
+  })
+});
+
+
+app.delete('/comments', function(req, res){
+  if(!req.query.id){
+    return res.status(400).send('id query needed');
+  }
+  Comment.findByIdAndRemove(req.query.id, function(error, response){
+    if(error){
+      return res.status(500).json(error);
+    }else{
+      return res.json(response);
+    }
+  })
+});
 // error handlers
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
