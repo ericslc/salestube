@@ -28,9 +28,9 @@ this.favoriteUser = {};
 
     };
     this.updateUser = function(){
-      return $http.put('/user?id=' + this.currentUser._id, this.currentUser)
+        return $http.put('/user?id=' + this.currentUser._id, this.currentUser)
       };
-     this.getFavoriteUser = function() {
+    this.getFavoriteUser = function() {
         return $http.get('/user/favorite?username=' + this.currentUser.username)
       };
     this.removeFav = function(id) {

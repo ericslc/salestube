@@ -1,19 +1,25 @@
-<div ng-repeat="message in comment" class="comment">
+<div class="comment">
+<h2>Add useful sites and information</h2>
+<input class="search" type="text" style="300px" ng-model="search" placeholder="Search...">
+
+<div ng-repeat="message in comment | filter:search" class="comment">
   {{message.comment}}
 </br>
-<a href="{{message.link}}" target="_blank">link to resourse</a>
+<a href="{{message.link}}" target="_blank">{{message.site}}</a>
 </div>
 
-<div class="form-group">
-  <label hide-form="showing">Comment</label>
+<form  class="form" ng-submit="newishcomment()">
+  <div hide-form="showing" class="form-group">
+    <label hide-form="showing">Comment</label>
     <input hide-form="showing" type="text" class="form-control" name="comment" ng-model="newcommentForm.comment" required>
     <label hide-form="showing">Link</label>
     <input hide-form="showing" type="url" class="form-control" name="link" ng-model="newcommentForm.link" required>
-
-</div>
+    <label hide-form="showing">Site/Topic</label>
+    <input hide-form="showing" type="text" class="form-control" name="site" ng-model="newcommentForm.site" required>
+  </div>
   <div>
-    <button ng-click="toggle()" >Add Comment/link
-  </button>
-
-
+    <button ng-click="toggle()" >Add Comment/Link
+    </button>
+  </div>
+</form>
 </div>

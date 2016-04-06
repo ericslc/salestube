@@ -9,8 +9,10 @@ body{
   text-align: center;
   color: black;
   background: url('imgs/ws_Columbia_Mountain_River_Grass_1366x768.jpg') no-repeat center center;
-  height: 800px;
+  height: 900px;
   width: 100%;
+  background-size: 100% 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,8 +23,9 @@ body{
   text-align: center;
   color: black;
   background: url('imgs/ws_Columbia_Mountain_River_Grass_1366x768.jpg') no-repeat center center;
-  height: 800px;
+  height: 900px;
   width: 100%;
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,8 +40,8 @@ body{
 .signup{
   text-align: center;
   color: white;
-  background: url('imgs/valley-background-wallpaper-1.jpg' ) no-repeat center center;
-  height: 800px;
+  background: url('imgs/valley-background-wallpaper-1.jpg' ) no-repeat  center center ;
+  height: 900px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -50,8 +53,10 @@ body{
   background-color: #444;
   color: black;
   background: url('imgs/row_of_plain_pencils_against_grey_background.jpg' ) no-repeat center center;
-  height: 800px;
+  height: auto;
   width: 100%;
+  background-size: 100% 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,6 +87,7 @@ body{
 }
 .comment{
   padding-top: 65px;
+  margin-left: 25px;
 }
 
 
@@ -102,8 +108,11 @@ body{
   text-align: center;
   color: black;
 background: url('imgs/row_of_plain_pencils_against_grey_background.jpg' ) no-repeat center center;
-  height: 1000px;;
+  height: 900px;;
   width: 100%;
+  background-size: 100% 100%;
+  padding-top: 75px;  
+
   display: flex;
   flex-direction: column;
   justify-content: center;

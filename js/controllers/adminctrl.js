@@ -1,6 +1,7 @@
 angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSvc, adminSvc, vidSvc, $sce){
   //member and admin controller
   $scope.currentUser = vidSvc.currentUser;
+  $scope.newcommentForm = {};
 
 
   $scope.videos = function () {
@@ -12,11 +13,14 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
 
       // call addVideos from service
       vidSvc.addVideos($scope.newvidForm.Title, $scope.newvidForm.Desc, $scope.newvidForm.link, $scope.newvidForm.topic)
+
+
         // handle success
         .then(function () {
           $scope.disabled = false;
           $scope.newvidForm = {};
         })
+
         // handle error
         .catch(function () {
           $scope.error = true;
@@ -26,6 +30,31 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
         });
 
     };
+    $scope.newishcomment = function () {
+      //initial form values
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call addComment from service
+      console.log($scope.newcommentForm)
+      adminSvc.addComment($scope.newcommentForm.comment, $scope.newcommentForm.link, $scope.newcommentForm.site)
+
+        .then(function () {
+          $scope.disabled = false;
+          $scope.newcommentForm = {};
+        })
+
+        .catch(function () {
+          $scope.error = true;
+          $scope.errorMessage = "What did you do?!?";
+          $scope.disabled = false;
+          $scope.newcommentForm = {};
+        });
+
+      };
+
+
+
     $scope.getComment = function(){
       adminSvc.getComment().then(function(response){
         $scope.comment = response.data;
@@ -34,19 +63,19 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
   };
     $scope.getComment();
 
-    
-    $scope.newComment = function(newcomment, newlink){
-      adminSvc.newComment(newcomment, newlink).then(function(response){
+
+    $scope.newComment = function(newcomment, newlink, newsite){
+      adminSvc.newComment(newcomment, newlink, newsite).then(function(response){
         $scope.getComment();
 
       })
-    }
+    };
 
 
-    $scope.toggle=function(){
+    $scope.toggle = function(){
     $scope.showing = !$scope.showing;
   };
-  $scope.showing = false;
+    $scope.showing = false;
 });
 angular.module('myApp').directive('hideForm', function(){
   function link ($scope, element, attributes){

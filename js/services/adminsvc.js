@@ -1,4 +1,4 @@
-angular.module('myApp').service('adminSvc', function($http){
+angular.module('myApp').service('adminSvc', function($http, $q){
   //user service
 this.currentUser = {};
 
@@ -6,10 +6,10 @@ this.currentUser = {};
 this.getComment = function(id){
   return $http.get('/comments');
 };
-this.newComment = function(comment, link){
+this.addComment = function(comment, link, site){
   var deferred = $q.defer();
 
-  $http.post('/comments', {comment:comment, link:link})
+  $http.post('/comments', {comment:comment, link:link, site:site})
   .success(function (data, status){
       if(status === 200 && data.status){
         deferred.resolve();

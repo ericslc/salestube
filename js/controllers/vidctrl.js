@@ -1,4 +1,4 @@
-angular.module('myApp').controller('vidCtrl', function($scope, vidSvc, adminSvc, $sce){
+angular.module('myApp').controller('vidCtrl', function($scope,  vidSvc, adminSvc, $sce){
   $scope.favoriteUser = vidSvc.favoriteUser;
 
 
@@ -26,6 +26,7 @@ angular.module('myApp').controller('vidCtrl', function($scope, vidSvc, adminSvc,
             $scope.getVideos();
           });
       };
+
       $scope.removeVideo = function(id) {
         vidSvc.removeVideo(id)
         .then(function(response){
@@ -33,12 +34,14 @@ angular.module('myApp').controller('vidCtrl', function($scope, vidSvc, adminSvc,
           $scope.getVideos();
         });
       };
+
+
      $scope.favoriteVideo = function(videos) {
-console.log(vidSvc.currentUser)
+       console.log(vidSvc.currentUser)
        for(var i = 0; i < videos.length; i++){
-if(videos === vidSvc.currentUser.favorite[i]){
-  vidSvc.currentUser.favorite.splice(i, 1);
-  vidSvc.updateUser;
+        if(videos === vidSvc.currentUser.favorite[i]){
+            vidSvc.currentUser.favorite.splice(i, 1);
+            vidSvc.updateUser;
 
 
 } else{
@@ -49,6 +52,8 @@ if(videos === vidSvc.currentUser.favorite[i]){
      };
    };
 };
+
+
 $scope.removeFav = function(id){
   for(var i = 0; i < vidSvc.currentUser.favorite.length; i++){
     console.log(vidSvc.currentUser.favorite[i])
@@ -68,10 +73,7 @@ for(var x = 0; x < vidSvc.favoriteUser.favorite.length; x++){
 };
 
 
-   $scope.addComment = function(videos){
-  vidSvc.addComment(videos, id).then(function(response){$scope.getVideos();
-  });
-};
+
 
      $scope.getFavoriteUser = function(){
        vidSvc.getFavoriteUser().then(function(response){

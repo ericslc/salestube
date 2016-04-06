@@ -4,8 +4,8 @@ var Videos = require('./videos');
 
 var Comment = new Schema({
   comment: {type:String, index: {sparse: true}},
-  link: {type: String, required: false}
-
+  link: {type: String, required: false},
+  site: {type:String}
 });
 
 
