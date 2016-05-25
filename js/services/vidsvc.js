@@ -1,4 +1,4 @@
-angular.module('myApp').service('vidSvc', function($http, $q){
+  angular.module('myApp').service('vidSvc', function($http, $q){
 
 //video service
 

@@ -74,7 +74,7 @@ body{
 .topvid{
   text-align: center;
   padding-top: 65px;
-  background-color: #ddd;
+  background-color: #efefef;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,7 +111,7 @@ background: url('imgs/row_of_plain_pencils_against_grey_background.jpg' ) no-rep
   height: 900px;;
   width: 100%;
   background-size: 100% 100%;
-  padding-top: 75px;  
+  padding-top: 75px;
 
   display: flex;
   flex-direction: column;

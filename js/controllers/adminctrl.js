@@ -1,5 +1,5 @@
-angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSvc, adminSvc, vidSvc, $sce){
-  //member and admin controller
+angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSvc, adminSvc,  $sce){
+  //comments/messages and admin controller
   $scope.currentUser = vidSvc.currentUser;
   $scope.newcommentForm = {};
 
@@ -30,6 +30,11 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
         });
 
     };
+
+
+    // beginning of comments section
+
+
     $scope.newishcomment = function () {
       //initial form values
       $scope.error = false;
