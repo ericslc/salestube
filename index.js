@@ -20,7 +20,7 @@ var port = process.env.PORT || 8034;
 
 
 mongoose.set("debug", true);
-mongoose.connect("mongodb://localhost/trainingvids");
+mongoose.connect("mongodb://user:user@ds023530.mlab.com:23530/tutorial-library");
 mongoose.connection.once("open", function(){
   console.log("connected to mongodb");
 });
