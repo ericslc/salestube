@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cors = require('cors');
+// var cors = require('cors');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -13,7 +13,7 @@ var User = require('./server/user');
 var Comment = require('./server/comments')
 var localStrategy = require('passport-local').Strategy;
 var jwt = require('jwt-simple');
-var port = 8034;
+var port = process.env.PORT || 8034;
 
 
 
@@ -26,7 +26,7 @@ mongoose.connection.once("open", function(){
 });
 
 app.use(express.static(__dirname));
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
