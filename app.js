@@ -24,7 +24,8 @@ angular.module('myApp', ['ui.router',]).config(function($stateProvider, $urlRout
   .state('messages',{
     url: '/messages',
     controller: 'adminCtrl',
-    templateUrl: '/views/messages.html'
+    templateUrl: '/views/messages.html',
+    access: {restricted: true}
   })
 
   .state('vids', {
