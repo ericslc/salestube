@@ -93,7 +93,7 @@ body{
 .videos{
   text-align: center;
   width: 60%;
-
+  background-color: #bbb;
   display: flex;
   flex-direction: column;
   justify-content: center;
