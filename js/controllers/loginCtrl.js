@@ -19,7 +19,7 @@ angular.module('myApp').controller('loginCtrl', function($scope, $location, admi
 
     .catch(function(){
       $scope.error = true;
-      $scope.errorMessage = "Fat fingered the password, didn't you";
+      $scope.errorMessage = "Password doesn't match";
       $scope.disabled = false;
       $scope.loginForm = {};
     });

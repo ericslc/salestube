@@ -10,7 +10,7 @@
 
 <form  class="form" ng-submit="newishcomment()">
   <div hide-form="showing" class="form-group">
-    <label hide-form="showing">Comment</label>
+    <label hide-form="showing">Description</label>
     <input hide-form="showing" type="text" class="form-control" name="comment" ng-model="newcommentForm.comment" required>
     <label hide-form="showing">Link</label>
     <input hide-form="showing" type="url" class="form-control" name="link" ng-model="newcommentForm.link" required>
@@ -18,8 +18,7 @@
     <input hide-form="showing" type="text" class="form-control" name="site" ng-model="newcommentForm.site" required>
   </div>
   <div>
-    <button ng-click="toggle()" >Add Comment/Link
-    </button>
+    <button ng-click="toggle()" >Add Link </button>
   </div>
 </form>
 </div>
