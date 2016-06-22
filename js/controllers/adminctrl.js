@@ -24,7 +24,7 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
         // handle error
         .catch(function () {
           $scope.error = true;
-          $scope.errorMessage = "What did you do?!?";
+          $scope.errorMessage = "Not as expected?";
           $scope.disabled = false;
           $scope.newvidForm = {};
         });
@@ -51,7 +51,7 @@ angular.module('myApp').controller('adminCtrl', function($scope,  vidSvc, authSv
 
         .catch(function () {
           $scope.error = true;
-          $scope.errorMessage = "What did you do?!?";
+          $scope.errorMessage = "Invalid username and/or password";
           $scope.disabled = false;
           $scope.newcommentForm = {};
         });

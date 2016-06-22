@@ -77,12 +77,12 @@ angular.module('myApp', ['ui.router',]).config(function($stateProvider, $urlRout
 
 
   });
-  angular.module('myApp').run(function ($state, $rootScope, $location, authSvc) {
+  angular.module('myApp').run(function ($state, $rootScope, $location,  $localStorage, authSvc) {
    $rootScope.$on('$stateChangeStart',
      function (event, next, current) {
        authSvc.getUserStatus();
        if (next.access.restricted &&
-           !authSvc.isLoggedIn()) {
+          !$localStorage.currentUser) {
              event.preventDefault();
              $state.go('home')
        }
