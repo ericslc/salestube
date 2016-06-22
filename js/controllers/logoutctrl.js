@@ -16,4 +16,4 @@ $scope.logout = function () {
 
 };
 
-}]);
+});
