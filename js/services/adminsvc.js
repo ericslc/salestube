@@ -1,6 +1,6 @@
 angular.module('myApp').service('adminSvc', function($http, $q){
   //user service
-this.currentUser = {};
+this.currentUser =  $localStorage.currentUser;
 
 
 this.getComment = function(id){
